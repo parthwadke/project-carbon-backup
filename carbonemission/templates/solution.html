@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">       
+    <title>Solution</title>
+    <style>
+      .img1 {
+        width: 750px;
+      }
+    </style>
+  </head>
+  <body>
+
+      <!-- ########### NAVEBAR ################# -->
+      <section style="border-bottom: 1px solid black;" class="navBar">
+        <nav  class="navbar navbar-expand-lg navbar-light shadow-5-strong container">
+          <a class="navbar-brand" href="/"><img width="70px" style="padding-right: 0px; margin-right: 0;" src="{% static 'imgs/websiteLog.png' %}" alt="" srcset=""></a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleDemo02" aria-controls="navbarToggleDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>    
+                <div class="collapse navbar-collapse  " id="navbarToggleDemo02">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                                <a class="nav-link " href="/input_predict">Prediction</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/input_visualize">Prophet</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="/A_InputVisualize">Arima</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/solution">Solution</a>
+                        </li>
+                    </ul>
+                </div>                    
+        </nav>
+    </section>
+
+    <h1 class="text-center text-success pt-3 pb-3">Solution to limit the carbon emission</h1>
+    <div class="card mt-3 mb-5 container p-2 img1">
+      <img
+        src="https://static01.nyt.com/images/2018/02/08/smarter-living/carbonfootprint-slide-1Z50/carbonfootprint-slide-1Z50-jumbo.jpg"
+        class="card-img-top"
+        alt="anhasd"
+        height="450px"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Eat locally-produced and organic food</h5>
+        <p class="card-text">
+          It has been estimated that 13% of U.S. greenhouse gas emissions result
+          from the production and transport of food. Transporting food requires
+          petroleum-based fuels, and many fertilizers are also fossil
+          fuel-based.Eating only locally grown food for one year would save the
+          greenhouse gas equivalent of driving 1,000 miles, but eating just one
+          vegetarian meal a week for a year saves 160 miles more than that,
+          according to one study from researchers at Carnegie Mellon.
+        </p>
+      </div>
+    </div>
+    <div class="card mb-5 container p-2 img1">
+      <img
+        src="https://static01.nyt.com/images/2018/02/08/smarter-living/carbonfootprint-slide-664U/carbonfootprint-slide-664U-jumbo.jpg"
+        class="card-img-top"
+        alt="anhasd"
+        height="450px"
+      />
+      <div class="card-body">
+        <h5 class="card-title">
+          Boosting efficiency of livestock production and resource use
+        </h5>
+        <p class="card-text">
+          Technological innovations such as improved feeding, genetics, animal
+          health, general husbandry and information technology are driving up
+          productivity, making resource use more efficient with potential to
+          reduce environmental impact.Emission intensities vary widely within
+          and across livestock systems – particularly for ruminants – showing
+          that better management practices can be adopted more widely to boost
+          production efficiency.
+        </p>
+      </div>
+    </div>
+    <div class="card mb-3 container p-2 img1">
+      <img
+        src="https://static01.nyt.com/images/2019/04/11/smarter-living/carbonfootprint-slide-D3TJ/carbonfootprint-slide-D3TJ-jumbo.jpg"
+        class="card-img-top"
+        alt="anhasd"
+        height="450px"
+      />
+      <div class="card-body">
+        <h5 class="card-title">
+          Intensifying recycling efforts and minimizing losses for a circular
+          bioeconomy
+        </h5>
+        <p class="card-text">
+          Promoting a circular bioeconomy involves recycling resources at every
+          possible step in agrifood systems and closing systems to minimize the
+          loss of resources and nutrients.Manure and slaughterhouse waste can be
+          used to generate fertilizer and biogas as a source of renewable
+          energy.
+        </p>
+      </div>
+    </div>
+    <div class="card mb-3 container p-2 img1">
+      <img
+        src="https://static01.nyt.com/images/2018/02/08/smarter-living/carbonfootprint-slide-25J6/carbonfootprint-slide-25J6-jumbo.jpg"
+        class="card-img-top"
+        alt="anhasd"
+        height="450px"
+      />
+      <div class="card-body">
+        <h5 class="card-title">
+          Striving for healthy, sustainable diets and accounting for protein
+          alternatives
+        </h5>
+        <p class="card-text">
+          The prevalence of malnutrition and overconsumption is unacceptably
+          high with livestock protein consumption tied to wealth.New alternative
+          proteins coming to market could potentially present consumers with
+          climate smart choices with less environmental impact.
+        </p>
+      </div>
+    </div>
+    <!-- #######################-FOOTER-####################### -->
+<section>
+          
+
+  <footer class="new_footer_area bg_color">
+      <div class="new_footer_top">
+          <div class="footer_bg">
+              <div class="footer_bg_one"></div>
+              <div class="footer_bg_two"></div>
+          </div>
+      </div>
+      <div class="footer_bottom">
+          <div class="container">
+              <div class="row align-items-center">
+                  <div class="col-lg-6 col-sm-7">
+                      <p class="mb-0 f_400">© carbonEmission Inc.. 2021 All rights reserved.</p>
+                  </div>
+                  <div class="col-lg-6 col-sm-5 text-right">
+                      <p>Made by Group 50</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+  </section>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

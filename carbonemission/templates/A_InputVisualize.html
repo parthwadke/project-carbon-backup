@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/a70249e646.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/main_vis.css' %}"> 
+        <title>Visualize page</title>
+        <!-- ########### GOOGLE FONTS ############### -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Crete+Round&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+        <style>
+            .navbar-nav .nav-item.active .nav-link,
+            .navbar-nav .nav-item:hover .nav-link {
+            color: #ABC441;
+            }   
+
+            
+        </style>
+    </head>
+    <body>
+        <!-- ########### NAVEBAR ################# -->
+        <section>
+             <!-- --------------------NAVBAR--------------------- -->
+           <nav style="border-bottom: 1px solid black;" class="navbar navbar-expand-lg navbar-light shadow-5-strong container">
+            <a class="navbar-brand" href="/"><img width="70px" style="padding-right: 0px; margin-right: 0;" src="{% static 'imgs/websiteLog.png' %}" alt="" srcset=""></a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleDemo02" aria-controls="navbarToggleDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>    
+                <div class="collapse navbar-collapse" id="navbarToggleDemo02">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link pr-3 " href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                                <a  style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link pr-3" href="/input_predict">Predict</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px;color: #C1525E;" class="nav-link active dropdown-toggle pr-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Visualize
+                            </a>
+                            <div style="padding: 10%;" class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                              <a style="font-family: 'Crete Round', serif;" class="dropdown-item" href="/input_visualize">Facebook Prophet</a>
+                              <a style="font-family: 'Crete Round', serif; " class="dropdown-item" href="/A_InputVisualize">ARIMA</a>
+                              <a style="font-family: 'Crete Round', serif; " class="dropdown-item" href="/N_InputVisualize">Neural Prophet</a>
+                            </div>
+                          </li>                            
+                        <li class="nav-item">
+                            <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px; " class="nav-link pr-3" href="/input_Compare">Compare</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="/solution">Solution</a>
+                        </li> -->
+                       
+                    </ul>
+                </div>    
+            </nav>
+        </section>
+        <!-- #################### MAIN PAGE ########################## -->
+        <section class="mainPage pt-2 mt-2">
+            <div style="background-color: #7C5E5E;" class="container">
+                <div>
+                    <div class="row">
+                        
+                            <div class="col-lg-8 pt-5">
+                                <img width="30%" class="pl-4 pb-3" src="{% static 'imgs/Logoarima.png'%}" alt="" srcset="">
+                                <b><h2 class="pt-4 pl-4 pb-3" style="font-family: 'Josefin Sans', sans-serif; font-size: 2.2rem;color:#CDD67E;">Autoregressive Integrated Moving Average</h2></b>
+                                <p class="pt-1 pl-4 pb-4" style="font-size: 1.1rem;line-height: 23pt; color: #CDD67E;">ARIMA is widely used in statistics and econometrics to measure events that happen over a period of time. The algorithm is used to understand past data or predict future data in a series.</p>
+                                <form  action="{% url 'A_visualize' %}">
+                                {% csrf_token %}
+                                    <label style="color: #CDD67E;" class="pb-5 pl-4" for="start_date">Start Date:</label>
+                                    <input class="" style="color: #7C5E5E;font-weight: bolder;" type="date" id="start_date" name="start_date">
+                                    <label style="color: #CDD67E;"class="pb-5 pl-4" for="end_date">End Date:</label>
+                                    <input class="" style="color: #7C5E5E;font-weight: bolder;" type="date" id="end_date" name="end_date">
+                                    <button style="background-color: white;color: #7C5E5E; border-color: aliceblue; text-shadow: 5pt; font-weight: bolder; font-size: 0.9rem;" type="submit" class="btn ml-4 text-center">Get Predictions </button>
+                                    
+                                </form>
+
+                                
+                            </div>
+                            <div class="col-lg-4 pl-5 pt-4 ">
+                                <!-- <div class="mr-5 p-3 text-cenetr container container-ds" >
+                                    
+                                        
+                                </div> -->
+                                <img class="pt-5 pl-3" src="{% static 'imgs/pOnlyLogo.png' %}" alt="" srcset="">
+                            </div>
+                    </div>
+                </div>
+            </div>           
+        </section>
+        <!-- #######################-FOOTER-####################### -->
+<section>
+          
+
+    <footer class="new_footer_area mt-5 pt-5 bg_color">
+        <div class="new_footer_top">
+       
+            <div class="footer_bg">
+                <div class="footer_bg_one"></div>
+                <div class="footer_bg_two"></div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-sm-7">
+                        <p class="mb-0 f_400">© carbonEmission Inc.. 2021 All rights reserved.</p>
+                    </div>
+                    <div class="col-lg-4 col-sm-5 text-center">
+                        <i class=" fab fa-github fa-2x"></i>
+                        <i class=" fas fa-envelope fa-2x"></i>
+                        <i class="fab fa-google fa-2x"></i>
+                    </div>
+                    <div class="col-lg-4 col-sm-5 text-right">
+                        <p>Made with VESIT</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+    </body>
+</html>
