@@ -76,7 +76,7 @@ def pre(x,model_arima,model_prophet,model_neural,years,p,d,q):
     df1.columns=['ds','y']
     # m = Prophet(interval_width=0.95, yearly_seasonality=True,weekly_seasonality=False,daily_seasonality=False)
     # model2 = m.fit(df1)
-    # load the model from disk
+    # load the model from diskasd
     m = pickle.load(open(model_prophet, 'rb'))
     future = m.make_future_dataframe(periods=years,freq='Y',include_history=True)
     acc_future = m.make_future_dataframe(periods=0,freq='Y',include_history=True)
