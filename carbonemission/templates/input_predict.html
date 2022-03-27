@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Item Prediction</title>
+        <title>Predict</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -16,7 +16,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Crete+Round&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/input_predict.css' %}">
+        <link rel="stylesheet" href="{% static 'css/input_predict.css' %}">    <link rel="icon" type="image/x-icon" href="{% static 'imgs/web.ico' %}">
+
         <style>
             .navbar-nav .nav-item.active .nav-link,
             .navbar-nav .nav-item:hover .nav-link {
@@ -30,7 +31,7 @@
 
         <section>
             <!-- --------------------NAVBAR--------------------- -->
-            <nav style="border-bottom: 1px solid black;"  class="navbar navbar-expand-lg navbar-light shadow-5-strong container">
+            <nav style="border-bottom: 1px solid black;" class="navbar navbar-expand-lg navbar-light shadow-5-strong container">
                 <a class="navbar-brand" href="/"><img width="70px" style="padding-right: 0px; margin-right: 0;" src="{% static 'imgs/websiteLog.png' %}" alt="" srcset=""></a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleDemo02" aria-controls="navbarToggleDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,27 +40,34 @@
                     <div class="collapse navbar-collapse" id="navbarToggleDemo02">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link home" href="/">Home</a>
+                                <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link pr-3 " href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                    <a  style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px;color: #C1525E;" class="nav-link active predict" href="/input_predict">Predict</a>
+                                    <a  style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px;color: #C1525E;" class="nav-link pr-3 active" href="/input_predict">Predict</a>
                             </li>
-                            <li class="nav-item  dropdown">
-                                <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link Visualize dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <li class="nav-item dropdown">
+                                <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link dropdown-toggle pr-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Visualize
                                 </a>
-                                <div class="dropdown-menu pr-3" aria-labelledby="navbarDropdownMenuLink">
+                                <div style="padding: 10%;" class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
                                   <a style="font-family: 'Crete Round', serif;" class="dropdown-item" href="/input_visualize">Facebook Prophet</a>
                                   <a style="font-family: 'Crete Round', serif; " class="dropdown-item" href="/A_InputVisualize">ARIMA</a>
                                   <a style="font-family: 'Crete Round', serif; " class="dropdown-item" href="/N_InputVisualize">Neural Prophet</a>
                                 </div>
                               </li>                            
                             <li class="nav-item">
-                                <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link compare" href="/input_Compare">Compare</a>
+                                <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px; " class="nav-link pr-3 " href="/input_Compare">Compare</a>
                             </li>
-                            
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="/solution">Solution</a>
+                            </li> -->
+                           
                         </ul>
-                    </div>                    
+                    </div>  
+                    <div >
+                        <img style="margin-left: 470px;" width="20%" src="{% static 'imgs/AI for earth.png' %}" alt="" srcset="">
+                    </div>       
+                </nav>                   
             </nav>
         </section>
         <!-- ################ nmain page ################# -->
@@ -80,16 +88,16 @@
                                 <div class="col dropdown">
                                     <p class="text-left">Select Type of Item</p>
                                     <select class="selectFun" name="typeOfItem">
-                                        <option value="cereals">Cereals</option>
-                                        <option value="MeatBuffalo">Meat Buffalo</option>
-                                        <option value="MeatCattle">Meat Cattle</option>
-                                        <option value="MeatChicken">Meat Chicken</option>
-                                        <option value="MeatGoat">Meat Goat</option>
-                                        <option value="MeatPig">Meat Pig</option>
-                                        <option value="MeatSheep">Meat Sheep</option>
-                                        <option value="MilkCow">Milk Cow</option>
-                                        <option value="MilkBuffalo">Milk Buffalo</option>
-                                        <option value="HenInShell">Hen Shell</option>
+                                        <option value="Cereals">Cereals</option>
+                                        <option value="Buffalo Meat">Buffalo Meat</option>
+                                        <option value="Beef Meat">Beef Meat</option>
+                                        <option value="Chicken Meat">Chicken Meat</option>
+                                        <option value="Goat Meat">Goat Meat</option>
+                                        <option value="Pig Meat">Pig Meat</option>
+                                        <option value="Sheep Meat">Sheep Meat</option>
+                                        <option value="Cow Milk">Cow Milk</option>
+                                        <option value="Buffalo Milk">Buffalo Milk</option>
+                                        <option value="Egg">Egg</option>
                                     </select>
                                 </div>
                             </div>
@@ -111,9 +119,8 @@
         <section>
           
 
-            <footer class="new_footer_area bg_color">
+            <footer class="new_footer_area bg_color mt-5 pt-5">
                 <div class="new_footer_top">
-                  
                     <div class="footer_bg">
                         <div class="footer_bg_one"></div>
                         <div class="footer_bg_two"></div>
@@ -125,13 +132,8 @@
                             <div class="col-lg-4 col-sm-7">
                                 <p class="mb-0 f_400">© carbonEmission Inc.. 2021 All rights reserved.</p>
                             </div>
-                            <div class="col-lg-4 col-sm-5 text-center">
-                                <i class=" fab fa-github fa-2x"></i>
-                                <i class=" fas fa-envelope fa-2x"></i>
-                                <i class=" fab fa-google fa-2x"></i>
-                            </div>
-                            <div class="col-lg-4 col-sm-5 text-right">
-                                <p>Made with VESIT</p>
+                            <div class="col-lg-8 col-sm-5 text-right">
+                                <p>Made by Group 50</p>
                             </div>
                         </div>
                     </div>

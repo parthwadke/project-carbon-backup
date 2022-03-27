@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Comparision</title>
+        <title>Compare</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -16,7 +16,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Crete+Round&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/input_compare.css' %}">
+        <link rel="stylesheet" href="{% static 'css/input_compare.css' %}">    <link rel="icon" type="image/x-icon" href="{% static 'imgs/web.ico' %}">
+
         <style>
             .navbar-nav .nav-item.active .nav-link,
             .navbar-nav .nav-item:hover .nav-link {
@@ -30,7 +31,7 @@
         <section class="navBarSection">
            <!-- --------------------NAVBAR--------------------- -->
            <nav style="border-bottom: 1px solid black;" class="navbar navbar-expand-lg navbar-light shadow-5-strong container">
-            <a class="navbar-brand" href="/"><img width="70px" style="padding-right: 0px; margin-right: 0;" src="{% static 'imgs/websiteLog.png' %}" alt="" srcset=""></a>
+            <a class="navbar-brand" href="/"><img width="70px" style="padding-right: 0px; margin-right: 0;margin-top: 0px;" src="{% static 'imgs/websiteLog.png' %}" alt="" srcset=""></a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleDemo02" aria-controls="navbarToggleDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -61,7 +62,10 @@
                         </li> -->
                        
                     </ul>
-                </div>   
+                </div>  
+                <div >
+                    <img style="margin-left: 470px;" width="20%" src="{% static 'imgs/AI for earth.png' %}" alt="" srcset="">
+                </div>       
             </nav> 
         </section>
         <!-- ################ nmain page ################# -->
@@ -82,16 +86,16 @@
                                 <div class="col dropdown">
                                     <p class="text-left">Select Type of Item</p>
                                     <select class="selectFun" name="typeOfItem">
-                                        <option value="cereals">Cereals</option>
-                                        <option value="MeatBuffalo">Meat Buffalo</option>
-                                        <option value="MeatCattle">Meat Cattle</option>
-                                        <option value="MeatChicken">Meat Chicken</option>
-                                        <option value="MeatGoat">Meat Goat</option>
-                                        <option value="MeatPig">Meat Pig</option>
-                                        <option value="MeatSheep">Meat Sheep</option>
-                                        <option value="MilkCow">Milk Cow</option>
-                                        <option value="MilkBuffalo">Milk Buffalo</option>
-                                        <option value="HenInShell">Hen Shell</option>
+                                        <option value="Cereals">Cereals</option>
+                                        <option value="Buffalo Meat">Buffalo Meat</option>
+                                        <option value="Beef Meat">Beef Meat</option>
+                                        <option value="Chicken Meat">Chicken Meat</option>
+                                        <option value="Goat Meat">Goat Meat</option>
+                                        <option value="Pig Meat">Pig Meat</option>
+                                        <option value="Sheep Meat">Sheep Meat</option>
+                                        <option value="Cow Milk">Cow Milk</option>
+                                        <option value="Buffalo Milk">Buffalo Milk</option>
+                                        <option value="Egg">Egg</option>
                                     </select>
                                 </div>
                             </div>
@@ -113,9 +117,8 @@
         <section>
           
 
-            <footer class="new_footer_area bg_color">
+            <footer class="new_footer_area bg_color mt-5 pt-5">
                 <div class="new_footer_top">
-                  
                     <div class="footer_bg">
                         <div class="footer_bg_one"></div>
                         <div class="footer_bg_two"></div>
@@ -127,13 +130,8 @@
                             <div class="col-lg-4 col-sm-7">
                                 <p class="mb-0 f_400">© carbonEmission Inc.. 2021 All rights reserved.</p>
                             </div>
-                            <div class="col-lg-4 col-sm-5 text-center">
-                                <i class=" fab fa-github fa-2x"></i>
-                                <i class=" fas fa-envelope fa-2x"></i>
-                                <i class=" fab fa-google fa-2x"></i>
-                            </div>
-                            <div class="col-lg-4 col-sm-5 text-right">
-                                <p>Made with VESIT</p>
+                            <div class="col-lg-8 col-sm-5 text-right">
+                                <p>Made by Group 50</p>
                             </div>
                         </div>
                     </div>

@@ -2,133 +2,221 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Result</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/a70249e646.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css/input_predict.css' %}">
+    <script
+      src="https://kit.fontawesome.com/a70249e646.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="{% static 'css/input_predict.css' %}" />    <link rel="icon" type="image/x-icon" href="{% static 'imgs/web.ico' %}">
+
     <!-- ########### GOOGLE FONTS ############### -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crete+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crete+Round&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        .navbar-nav .nav-item.active .nav-link,
-        .navbar-nav .nav-item:hover .nav-link {
-        color: #ABC441;
-        }            
-        
+      .navbar-nav .nav-item.active .nav-link,
+      .navbar-nav .nav-item:hover .nav-link {
+        color: #abc441;
+      }
+      .anyClass {
+        height: 450px;
+        overflow-y: scroll;
+      }
     </style>
   </head>
   <body>
-    <section style="border-bottom: 1px solid black;" class="navbarSection">
+    <section>
       <!-- --------------------NAVBAR--------------------- -->
-      <nav style="margin-bottom: 0px;" class="navbar navbar-expand-lg navbar-light shadow-5-strong container">
-        <a class="navbar-brand" href="/"><img width="70px" style="padding-right: 0px; margin-right: 0;" src="{% static 'imgs/websiteLog.png' %}" alt="" srcset=""></a>
-        
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleDemo02" aria-controls="navbarToggleDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>    
-            <div class="collapse navbar-collapse" id="navbarToggleDemo02">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link home" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                            <a  style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px;color: #C1525E;" class="nav-link active predict" href="/input_predict">Predict</a>
-                    </li>
-                    <li class="nav-item  dropdown">
-                        <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link Visualize dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Visualize
-                        </a>
-                        <div class="dropdown-menu pr-3" aria-labelledby="navbarDropdownMenuLink">
-                          <a style="font-family: 'Crete Round', serif;" class="dropdown-item" href="/input_visualize">Facebook Prophet</a>
-                          <a style="font-family: 'Crete Round', serif; " class="dropdown-item" href="/A_InputVisualize">ARIMA</a>
-                          <a style="font-family: 'Crete Round', serif; " class="dropdown-item" href="/N_InputVisualize">Neural Prophet</a>
-                        </div>
-                      </li>                            
-                    <li class="nav-item">
-                        <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link compare" href="/input_Compare">Compare</a>
-                    </li>
-                    <!-- <li class="nav-item">
+      <nav
+        style="border-bottom: 1px solid black"
+        class="navbar navbar-expand-lg navbar-light shadow-5-strong container"
+      >
+        <a class="navbar-brand" href="/"
+          ><img
+            width="70px"
+            style="padding-right: 0px; margin-right: 0"
+            src="{% static 'imgs/websiteLog.png' %}"
+            alt=""
+            srcset=""
+        /></a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggleDemo02"
+          aria-controls="navbarToggleDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggleDemo02">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                style="
+                  font-family: 'Crete Round', serif;
+                  font-size: 18px;
+                  padding-left: 10px;
+                "
+                class="nav-link pr-3"
+                href="/"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                style="
+                  font-family: 'Crete Round', serif;
+                  font-size: 18px;
+                  padding-left: 10px;
+                  color: #c1525e;
+                "
+                class="nav-link pr-3 active"
+                href="/input_predict"
+                >Predict</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                style="
+                  font-family: 'Crete Round', serif;
+                  font-size: 18px;
+                  padding-left: 10px;
+                "
+                class="nav-link dropdown-toggle pr-3"
+                href="#"
+                id="navbarDropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Visualize
+              </a>
+              <div
+                style="padding: 10%"
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <a
+                  style="font-family: 'Crete Round', serif"
+                  class="dropdown-item"
+                  href="/input_visualize"
+                  >Facebook Prophet</a
+                >
+                <a
+                  style="font-family: 'Crete Round', serif"
+                  class="dropdown-item"
+                  href="/A_InputVisualize"
+                  >ARIMA</a
+                >
+                <a
+                  style="font-family: 'Crete Round', serif"
+                  class="dropdown-item"
+                  href="/N_InputVisualize"
+                  >Neural Prophet</a
+                >
+              </div>
+            </li>
+            <li class="nav-item">
+              <a
+                style="
+                  font-family: 'Crete Round', serif;
+                  font-size: 18px;
+                  padding-left: 10px;
+                "
+                class="nav-link pr-3"
+                href="/input_Compare"
+                >Compare</a
+              >
+            </li>
+            <!-- <li class="nav-item">
                         <a class="nav-link" href="/solution">Solution</a>
                     </li> -->
-                </ul>
-            </div>                    
-    </nav>
+          </ul>
+        </div>
+        <div>
+          <img
+            style="margin-left: 470px"
+            width="20%"
+            src="{% static 'imgs/AI for earth.png' %}"
+            alt=""
+            srcset=""
+          />
+        </div>
+      </nav>
     </section>
-    
+
     <div class="container">
-      <h2 class="text-center pt-2">Prediction of {{items}} </h2><br>
-      {% autoescape off %}
-      {{ img }}
-      {% endautoescape %}
+      <h2 class="text-center pt-2">Prediction of {{items}}</h2>
+      <br />
+      {% autoescape off %} {{ img }} {% endautoescape %}
     </div>
     <!-- ################# TABLE ################### -->
-    <div class="container">            
+    <div class="container anyClass">
       <table class="table table-bordered table-light table-striped">
         <thead>
           <tr>
             <th>Year</th>
             <th>Actual Carbon Emission</th>
-            <th>Predicted Carbon Emission </th>
+            <th>Predicted Carbon Emission</th>
           </tr>
         </thead>
         <tbody>
-        <!-- jinja2 Technique -->
-        {% if d %}  
-        {% for i in d %}
+          <!-- jinja2 Technique -->
+          {% if d %} {% for i in d %}
           <tr>
             <td>{{i.Year}}</td>
             <td>{{i.actualdata}}</td>
             <td>{{i.Value}}</td>
           </tr>
-        {% endfor %}
-        {% endif %}
+          {% endfor %} {% endif %}
         </tbody>
       </table>
-      
     </div>
 
     <!-- {{ result|safe }}-->
-    
+
     <!-- ########################## FOOTER ########################## -->
     <section>
-          
-
-      <footer class="new_footer_area bg_color">
-          <div class="new_footer_top">
-           
-              <div class="footer_bg">
-                  <div class="footer_bg_one"></div>
-                  <div class="footer_bg_two"></div>
-              </div>
-          </div>
-          <div class="footer_bottom">
-              <div class="container">
-                  <div class="row align-items-center">
-                      <div class="col-lg-4 col-sm-7">
-                          <p class="mb-0 f_400">© carbonEmission Inc.. 2021 All rights reserved.</p>
-                      </div>
-                      <div class="col-lg-4 col-sm-5 text-center">
-                        <i class="pl-5 pr-5 fab fa-github fa-2x"></i>
-                        <i class="pl-5 pr-5 fas fa-envelope fa-2x"></i>
-                        <i class="pl-5 pr-5 fab fa-google fa-2x"></i>
+      <footer class="new_footer_area bg_color mt-5 pt-5">
+        <div class="new_footer_top">
+            <div class="footer_bg">
+                <div class="footer_bg_one"></div>
+                <div class="footer_bg_two"></div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-sm-7">
+                        <p class="mb-0 f_400">© carbonEmission Inc.. 2021 All rights reserved.</p>
                     </div>
-                      <div class="col-lg-4 col-sm-5 text-right">
-                          <p>Made with <i class="icon_heart"></i> VESIT</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </footer>
-      </section>
-      
-    
+                    <div class="col-lg-8 col-sm-5 text-right">
+                        <p>Made by Group 50</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </section>
   </body>
 </html>

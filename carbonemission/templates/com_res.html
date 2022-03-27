@@ -3,13 +3,14 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Result</title>
+    <title>Compare</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a70249e646.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css/input_predict.css' %}">
+    <link rel="stylesheet" href="{% static 'css/input_predict.css' %}">    <link rel="icon" type="image/x-icon" href="{% static 'imgs/web.ico' %}">
+
     <!-- ########### GOOGLE FONTS ############### -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +26,10 @@
       .navbar-nav .nav-item:hover .nav-link {
       color: #ABC441;
       }            
-      
+      .anyClass {
+        height: 450px;
+        overflow-y: scroll;
+      }
     </style>
   </head>
   <body>
@@ -103,9 +107,10 @@
       </table>
       
     </div>
+    <h2 style="font-family: 'Josefin Sans', sans-serif;" class="text-center pt-5 mt-3 pb-3">Comparative Analysis of Predicted Data</h2>
     <!-- ################# TABLE ################### -->
-    <div class="container">            
-      <h2 style="font-family: 'Josefin Sans', sans-serif;" class="text-center pt-5 mt-3 pb-3">Comparative Analysis of Predicted Data</h2>
+    <div class="container anyClass">            
+      
       <table class="table table-bordered table-light table-striped">
         <thead>
           <tr>
@@ -113,7 +118,7 @@
             <th>Actual Data</th>
             <th>Arima Predicted Data</th>
             <th>Prophet Predicted Data</th>
-            <th>Neural Prophet Predicted Data</th>
+            <!-- <th>Neural Prophet Predicted Data</th> -->
           </tr>
         </thead>
         <tbody>
@@ -125,7 +130,7 @@
             <td>{{i.actualdata}}</td>
             <td>{{i.Value}}</td>
             <td>{{i.prophet}}</td>
-            <td>{{i.Value}}</td>
+            <!-- <td>{{i.neuralprophet}}</td> -->
           </tr>
         {% endfor %}
         {% endif %}
@@ -140,32 +145,26 @@
     <section>
           
 
-      <footer class="new_footer_area bg_color">
-          <div class="new_footer_top">
-           
-              <div class="footer_bg">
-                  <div class="footer_bg_one"></div>
-                  <div class="footer_bg_two"></div>
-              </div>
-          </div>
-          <div class="footer_bottom">
-              <div class="container">
-                  <div class="row align-items-center">
-                      <div class="col-lg-4 col-sm-7">
-                          <p class="mb-0 f_400">© carbonEmission Inc.. 2021 All rights reserved.</p>
-                      </div>
-                      <div class="col-lg-4 col-sm-5 text-center">
-                        <i class="pl-5 pr-5 fab fa-github fa-2x"></i>
-                        <i class="pl-5 pr-5 fas fa-envelope fa-2x"></i>
-                        <i class="pl-5 pr-5 fab fa-google fa-2x"></i>
+      <footer class="new_footer_area bg_color mt-5 pt-5">
+        <div class="new_footer_top">
+            <div class="footer_bg">
+                <div class="footer_bg_one"></div>
+                <div class="footer_bg_two"></div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-sm-7">
+                        <p class="mb-0 f_400">© carbonEmission Inc.. 2021 All rights reserved.</p>
                     </div>
-                      <div class="col-lg-4 col-sm-5 text-right">
-                          <p>Made with <i class="icon_heart"></i> VESIT</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </footer>
+                    <div class="col-lg-8 col-sm-5 text-right">
+                        <p>Made by Group 50</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
       </section>
       
     

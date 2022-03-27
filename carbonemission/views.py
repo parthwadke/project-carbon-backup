@@ -66,7 +66,7 @@ def input_Compare(request):
 
 
 
-def pre(x,model_arima,model_prophet,model_neural,years,p,d,q):
+def pre(x,model_arima,model_prophet,pitem,years,p,d,q):
     df = pd.read_csv(x)
     df.drop(['Domain','Area','Element','Item'],axis=1,inplace=True)
     df['Year'] = df['Year'].astype(str) + '/12/31'
@@ -74,9 +74,7 @@ def pre(x,model_arima,model_prophet,model_neural,years,p,d,q):
     df['Year'] = pd.to_datetime(df['Year'])
     df1=pd.DataFrame(df)
     df1.columns=['ds','y']
-    # m = Prophet(interval_width=0.95, yearly_seasonality=True,weekly_seasonality=False,daily_seasonality=False)
-    # model2 = m.fit(df1)
-    # load the model from diskasd
+    #Facebook Prophet
     m = pickle.load(open(model_prophet, 'rb'))
     future = m.make_future_dataframe(periods=years,freq='Y',include_history=True)
     acc_future = m.make_future_dataframe(periods=0,freq='Y',include_history=True)
@@ -84,20 +82,21 @@ def pre(x,model_arima,model_prophet,model_neural,years,p,d,q):
     mape_p,rmse_p = forecast_accuracy(acc_fut_p.yhat,df1.y)
     prophet = m.predict(future)
     prophet.drop(["trend","yhat_lower","yhat_upper","trend_lower","trend_upper","additive_terms","additive_terms_lower","additive_terms_upper","yearly","yearly_lower","yearly_upper","multiplicative_terms","multiplicative_terms_lower","multiplicative_terms_upper"],axis=1,inplace=True)
-    # lm = pickle.load(open(model_neural, 'rb'))
-    #Modelfuture = lm.make_future_dataframe(df1, periods=years,n_historic_predictions=True)
-    #Modelforecast = lm.predict(Modelfuture)
-    #acc_fut_np = lm.make_future_dataframe(df1, periods=0,n_historic_predictions=True)
-    #acc_for_np = lm.predict(acc_fut_np)
-    #mape_np,rmse_np = forecast_accuracy(acc_for_np.yhat1,df.y)
+    #Neural Prophet
+    df6 = pd.read_csv('carbonemission/combined_data_neural_prophet.csv',parse_dates=True)
+    df9 = pd.DataFrame(df6.loc[df6['Item'] == pitem])
+    df7 =  pd.DataFrame(df9[:57+years])
+    #df7['ds'] = pd.to_datetime(df7['ds'])
+    df8 =  pd.DataFrame(df6[:57])
+    df8.rename(columns = {'yhat1':'forecast'}, inplace = True)
+    mape_np,rmse_np = forecast_accuracy(df8.forecast,df1.y)
+    #Arima
     df.columns=['Year','Value']
-    # model = ARIMA(df.Value, order=(p,d,q),dates=df.Year,freq='A')
-    # model_fit = model.fit()
     model_fit=pickle.load(open(model_arima,'rb'))
     forecast = model_fit.predict(start=1,end = len(df.Value)+years,typ = 'levels').rename('Forecast')
     acc_fut_a = model_fit.predict(start=1,end = len(df.Value),typ = 'levels').rename('Forecast')
     mape_a,rmse_a = forecast_accuracy(acc_fut_a,df.Value)
-    acc_list=[mape_p,rmse_p,mape_a,rmse_a,mape_p,rmse_p]
+    acc_list=[mape_p,rmse_p,mape_a,rmse_a,mape_np,rmse_np]
     buff1 = [] 
     for x in range(0,57+years):
         buff1.append(x)
@@ -115,7 +114,7 @@ def pre(x,model_arima,model_prophet,model_neural,years,p,d,q):
     df['Year'] = df['Year'].astype(str) + '/12/31'
     df['Year'] = df['Year'].str.replace('/','-')
     df['Year'] = pd.to_datetime(df['Year'])
-    return df,prophet,df,acc_list
+    return df,prophet,df7,acc_list
 
 def preprocessing(x,years,p,d,q):
     dffao = pd.read_csv(x)
@@ -131,35 +130,35 @@ def forecast_accuracy(forecast, actual):
     return mape,rmse
 
 def getPredictions(x,years):
-    if x == 'cereals':
-        final,prophet,model_neural,acc_list=pre('carbonemission/pindiaDataset/cereals_excluding_rice_old.csv',"carbonemission/darima/cereals_arima.pkl","carbonemission/prophet/cereals_excluding_prophet.pkl","carbonemission/prophetneural/cereals_rice.sav",years,10,1,10)
+    if x == 'Cereals':
+        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/cereals_excluding_rice_old.csv',"carbonemission/darima/cereals_arima.pkl","carbonemission/prophet/cereals_excluding_prophet.pkl",'Cereals Exc Rice',years,10,1,10)
         final1=pd.DataFrame(preprocessing('carbonemission/indiaDataset/cereals_excluding_rice_old.csv', years,10,1,10))
-    elif x== 'MeatBuffalo':
-        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_buffalo_old.csv',"carbonemission/darima/meat_buffalo_arima.pkl","carbonemission/prophet/meat_buffalo_prophet.pkl","carbonemission/prophetneural/meat_buffalo.sav", years,30,1,40)
+    elif x== 'Buffalo Meat':
+        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_buffalo_old.csv',"carbonemission/darima/meat_buffalo_arima.pkl","carbonemission/prophet/meat_buffalo_prophet.pkl",'Meat Buffalo', years,30,1,40)
         final1=pd.DataFrame(preprocessing('carbonemission/indiaDataset/meat_buffalo_old.csv', years,30,1,40))
-    elif x== 'MeatCattle':
-        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_cattle_old.csv',"carbonemission/darima/meat_cattle_arima.pkl","carbonemission/prophet/meat_cattle_prophet.pkl","carbonemission/prophetneural/meat_cattle.sav",years,30,1,35)
+    elif x== 'Beef Meat':
+        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_cattle_old.csv',"carbonemission/darima/meat_cattle_arima.pkl","carbonemission/prophet/meat_cattle_prophet.pkl",'Meat Cattle',years,30,1,35)
         final1=pd.DataFrame(preprocessing('carbonemission/indiaDataset/meat_cattle_old.csv', years,30,1,35))
-    elif x== 'MeatChicken':
-       final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_chicken_old.csv',"carbonemission/darima/meat_chicken_arima.pkl","carbonemission/prophet/meat_chicken_prophet.pkl","carbonemission/prophetneural/meat_chicken.sav", years,10,1,7)
+    elif x== 'Chicken Meat':
+       final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_chicken_old.csv',"carbonemission/darima/meat_chicken_arima.pkl","carbonemission/prophet/meat_chicken_prophet.pkl",'Meat Chicken', years,10,1,7)
        final1=pd.DataFrame( preprocessing('carbonemission/indiaDataset/meat_chicken_old.csv', years,10,1,7))
-    elif x== 'MeatGoat':
-        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_goat_old.csv', "carbonemission/darima/meat_goat_arima.pkl","carbonemission/prophet/meat_goat_prophet.pkl","carbonemission/prophetneural/meat_goat.sav",years,30,1,40)
+    elif x== 'Goat Meat':
+        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_goat_old.csv', "carbonemission/darima/meat_goat_arima.pkl","carbonemission/prophet/meat_goat_prophet.pkl",'Meat Goat',years,30,1,40)
         final1=pd.DataFrame(preprocessing('carbonemission/indiaDataset/meat_goat_old.csv', years,30,1,40))
-    elif x== 'MeatPig':
-        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_pig_old.csv',"carbonemission/darima/meat_pig_arima.pkl","carbonemission/prophet/meat_pig_prophet.pkl","carbonemission/prophetneural/meat_pig.sav", years,30,1,20)
+    elif x== 'Pig Meat':
+        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_pig_old.csv',"carbonemission/darima/meat_pig_arima.pkl","carbonemission/prophet/meat_pig_prophet.pkl",'Meat Pig', years,30,1,20)
         final1=pd.DataFrame(preprocessing('carbonemission/indiaDataset/meat_pig_old.csv', years,30,1,20))
-    elif x== 'MeatSheep':
-       final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_sheep_old.csv',"carbonemission/darima/meat_sheep_arima.pkl","carbonemission/prophet/meat_sheep_prophet.pkl","carbonemission/prophetneural/meat_sheep.sav", years,20,1,20)
+    elif x== 'Sheep Meat':
+       final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/meat_sheep_old.csv',"carbonemission/darima/meat_sheep_arima.pkl","carbonemission/prophet/meat_sheep_prophet.pkl",'Meat Sheep', years,20,1,20)
        final1=pd.DataFrame( preprocessing('carbonemission/indiaDataset/meat_sheep_old.csv', years,20,1,20))
-    elif x== 'MilkCow':
-        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/milk_whole__fresh_cow_old.csv',"carbonemission/darima/milk_cow_arima.pkl","carbonemission/prophet/milk_whole_fresh_cow_prophet.pkl","carbonemission/prophetneural/milk_cow.sav",years,30,1,20)
+    elif x== 'Cow Milk':
+        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/milk_whole__fresh_cow_old.csv',"carbonemission/darima/milk_cow_arima.pkl","carbonemission/prophet/milk_whole_fresh_cow_prophet.pkl",'Milk Whole Fresh Cow',years,30,1,20)
         final1=pd.DataFrame(preprocessing('carbonemission/indiaDataset/milk_whole__fresh_cow_old.csv',years,30,1,20))
-    elif x== 'MilkBuffalo':
-        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/milk_whole_fresh_buffalo_old.csv',"carbonemission/darima/milk_buffalo_arima.pkl","carbonemission/prophet/milk_whole_fresh_buffalo_prophet.pkl","carbonemission/prophetneural/milk_buffalo.sav", years,30,1,20)
+    elif x== 'Buffalo Milk':
+        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/milk_whole_fresh_buffalo_old.csv',"carbonemission/darima/milk_buffalo_arima.pkl","carbonemission/prophet/milk_whole_fresh_buffalo_prophet.pkl",'Milk Whole Fresh Buffalo', years,30,1,20)
         final1=pd.DataFrame(preprocessing('carbonemission/indiaDataset/milk_whole_fresh_buffalo_old.csv', years,30,1,20))
     else:
-        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/eggs_hen_in_shell_old.csv',"carbonemission/darima/egg_hen_arima.pkl","carbonemission/prophet/eggs_hen_in_shell_prophet.pkl","carbonemission/prophetneural/eggs_hen_shell.sav", years,30,1,20)
+        final,prophet,model_neural,acc_list=pre('carbonemission/indiaDataset/eggs_hen_in_shell_old.csv',"carbonemission/darima/egg_hen_arima.pkl","carbonemission/prophet/eggs_hen_in_shell_prophet.pkl",'Egg Hen in Shell', years,30,1,20)
         final1=pd.DataFrame(preprocessing('carbonemission/indiaDataset/eggs_hen_in_shell_old.csv', years,30,1,20))
     final=pd.DataFrame(final)
     prophet=pd.DataFrame(prophet)
@@ -243,12 +242,12 @@ def com_res(request):
     actual=pd.DataFrame(actual)
     prophet=pd.DataFrame(prophet)
     model_neural=pd.DataFrame(model_neural)
-    img = plot({'data':[Scatter(x=result['Year'], y=result['Value'],mode='lines+markers', name='Arima Predicted Data', opacity=0.8, marker_color='black'),Scatter(x=actual['Year'], y=actual['Value'],mode='lines+markers', name='Actual Data', opacity=0.8, marker_color='red'),Scatter(x=result['Year'], y=result['Value'],mode='lines+markers', name='Neural', opacity=0.8, marker_color='yellow'),Scatter(x=prophet['ds'], y=prophet['yhat'],mode='lines+markers', name='Prophet Predicted Data', opacity=0.8, marker_color='blue')],'layout': {'xaxis': {'title': 'Year'}, 'yaxis': {'title': 'Emission Intensity'},'margin':{'t':15,'b':15},'height':650}}, output_type='div')
+    img = plot({'data':[Scatter(x=result['Year'], y=result['Value'],mode='lines+markers', name='Arima Predicted Data', opacity=0.8, marker_color='black'),Scatter(x=actual['Year'], y=actual['Value'],mode='lines+markers', name='Actual Data', opacity=0.8, marker_color='red'),Scatter(x=model_neural['ds'], y=model_neural['yhat1'],mode='lines+markers', name='Neural Prophet Predicted Data', opacity=0.8, marker_color='yellow'),Scatter(x=prophet['ds'], y=prophet['yhat'],mode='lines+markers', name='Facebook Prophet Predicted Data', opacity=0.8, marker_color='blue')],'layout': {'xaxis': {'title': 'Year'}, 'yaxis': {'title': 'Emission Intensity'},'margin':{'t':15,'b':15},'height':650}}, output_type='div')
     
     result['Year'] = result['Year'].dt.strftime('%Y-%m-%d')
     result['actualdata']=actual['Value']
     result['prophet']=prophet['yhat']
-    #result['neuralprophet']=model_neural['yhat1']
+    # result['neuralprophet']=model_neural['yhat1']
     json_records = result.reset_index().to_json(orient ='records')
     data = []
     data = json.loads(json_records)
