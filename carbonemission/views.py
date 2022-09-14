@@ -41,11 +41,11 @@ def home(request):
     df2000 = pd.read_csv('carbonemission/dataset2000.csv')
     df2017 = pd.read_csv('carbonemission/dataset2017.csv')
     fig6 = make_subplots(1, 2, specs=[[{'type':'domain'}, {'type':'domain'}]],
-                        subplot_titles=['2000', '2017'])
+                        subplot_titles=['2000', '2020'])
     fig6.add_trace(go.Pie(labels=df2000['Item'], values=df2000['Value'], scalegroup='one',
                         name="CO2 2000"), 1, 1)
     fig6.add_trace(go.Pie(labels=df2017['Item'], values=df2017['Value'], scalegroup='one',
-                        name="CO2 2000"), 1, 2)
+                        name="CO2 2020"), 1, 2)
     fig6.update_layout(title_text='Carbon Emission in Meat Industry')
     plot_div6 = plot(fig6, output_type='div', include_plotlyjs=False)
     context = {'fig5': fig5,'plot_div6': plot_div6}    
