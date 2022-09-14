@@ -125,8 +125,8 @@ def preprocessing(x,years,p,d,q):
     return dffao
 
 def forecast_accuracy(forecast, actual):
-    mape = np.mean(np.abs(forecast - actual)/np.abs(actual))  # MApe
-    rmse = np.mean((forecast - actual)**2)**.5  # RMSE
+    mape = round(np.mean(np.abs(forecast - actual)/np.abs(actual)),4)  # MApe
+    rmse = round(np.mean((forecast - actual)**2)**.5,4)  # RMSE
     return mape,rmse
 
 def getPredictions(x,years):
@@ -221,8 +221,9 @@ def result(request):
     # #print(result)
     # return render(request, 'result.html', {'result': result,'img':img})
     
-    result['Year'] = result['Year'].dt.strftime('%Y-%m-%d')
-    result['actualdata']=actual['Value']
+    result['Year'] = result['Year'].dt.strftime('%Y')
+    result['actualdata']=round(actual['Value'],2)
+    result['Value'] = round(result['Value'],2)
     json_records = result.reset_index().to_json(orient ='records')
     data = []
     data = json.loads(json_records)
@@ -244,9 +245,10 @@ def com_res(request):
     model_neural=pd.DataFrame(model_neural)
     img = plot({'data':[Scatter(x=result['Year'], y=result['Value'],mode='lines+markers', name='Arima Predicted Data', opacity=0.8, marker_color='black'),Scatter(x=actual['Year'], y=actual['Value'],mode='lines+markers', name='Actual Data', opacity=0.8, marker_color='red'),Scatter(x=model_neural['ds'], y=model_neural['yhat1'],mode='lines+markers', name='Neural Prophet Predicted Data', opacity=0.8, marker_color='yellow'),Scatter(x=prophet['ds'], y=prophet['yhat'],mode='lines+markers', name='Facebook Prophet Predicted Data', opacity=0.8, marker_color='blue')],'layout': {'xaxis': {'title': 'Year'}, 'yaxis': {'title': 'Emission Intensity'},'margin':{'t':15,'b':15},'height':650}}, output_type='div')
     
-    result['Year'] = result['Year'].dt.strftime('%Y-%m-%d')
-    result['actualdata']=actual['Value']
-    result['prophet']=prophet['yhat']
+    result['Year'] = result['Year'].dt.strftime('%Y')
+    result['Value'] = round(result['Value'],2)
+    result['actualdata']=round(actual['Value'],2)
+    result['prophet']=round(prophet['yhat'],2)
     # result['neuralprophet']=model_neural['yhat1']
     json_records = result.reset_index().to_json(orient ='records')
     data = []
