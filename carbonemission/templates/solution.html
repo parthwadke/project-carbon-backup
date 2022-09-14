@@ -19,144 +19,112 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <link rel="icon" type="image/x-icon" href="{% static 'imgs/web.ico' %}" />
 
-    <title>Solution</title>
+    <title>Educate Yourself</title>
     <style>
       .img1 {
         width: 750px;
       }
+      p{padding-right: 5%;
+      padding-left: 5%;}
+      h2{color: black;text-decoration: solid;font-weight: bolder;padding-top: 30px;}
     </style>
   </head>
   <body>
-    <!-- ########### NAVEBAR ################# -->
-    <section style="border-bottom: 1px solid black" class="navBar">
-      <nav
-        class="navbar navbar-expand-lg navbar-light shadow-5-strong container"
-      >
-        <a class="navbar-brand" href="/"
-          ><img
-            width="70px"
-            style="padding-right: 0px; margin-right: 0"
-            src="{% static 'imgs/websiteLog.png' %}"
-            alt=""
-            srcset=""
-        /></a>
-
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarToggleDemo02"
-          aria-controls="navbarToggleDemo02"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+    <!-- --------------------NAVBAR--------------------- -->
+    <nav style="border-bottom: 1px solid black;padding-bottom: 12px;" class="navbar navbar-expand-lg navbar-light shadow-5-strong container">
+      <a class="navbar-brand" href="/"><img width="70px" style="padding-right: 0px; margin-right: 0;" src="{% static 'imgs/websiteLog.png' %}" alt="" srcset=""></a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleDemo02" aria-controls="navbarToggleDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarToggleDemo02">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/input_predict">Prediction</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/input_visualize">Prophet</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/A_InputVisualize">Arima</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/solution">Solution</a>
-            </li>
-          </ul>
-        </div>
+      </button>    
+          <div class="collapse navbar-collapse" id="navbarToggleDemo02">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px;" class="nav-link pr-3 active" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                          <a  style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link pr-3" href="/input_predict">Predict</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px" class="nav-link dropdown-toggle pr-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Visualize
+                      </a>
+                      <div style="padding: 10%;" class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                        <a style="font-family: 'Crete Round', serif;" class="dropdown-item" href="/input_visualize">Facebook Prophet</a>
+                        <a style="font-family: 'Crete Round', serif; " class="dropdown-item" href="/A_InputVisualize">ARIMA</a>
+                        <a style="font-family: 'Crete Round', serif; " class="dropdown-item" href="/N_InputVisualize">Neural Prophet</a>
+                      </div>
+                    </li>                            
+                  <li class="nav-item">
+                      <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px;" class="nav-link pr-3" href="/input_Compare">Compare</a>
+                  </li>
+                  <li class="nav-item">
+                      <a style="font-family: 'Crete Round', serif; font-size: 18px; padding-left: 10px;color: #C1525E;" class="nav-link" href="/solution">Educate&nbsp;Yourself</a>
+                  </li>
+          
+                  <!-- <li class="nav-item">
+                      <a class="nav-link" href="/solution">Solution</a>
+                  </li> -->
+                 
+              </ul>
+          </div>  
+          <div >
+              <img style="margin-left: 470px;" width="20%" src="{% static 'imgs/AI for earth.png' %}" alt="" srcset="">
+          </div>       
       </nav>
     </section>
+    
+    <section class="container">
+      <div>
+        <h2>How much meat do we eat?</h2>
+        <p>Meat consumption in the UK dropped by 17% in the decade to 2019, with the average daily amount eaten per person falling from from 3.6oz (103g) to 3oz.
 
-    <h1 class="text-center text-success pt-3 pb-3">
-      Solution to limit the carbon emission
-    </h1>
-    <div class="card mt-3 mb-5 container p-2 img1">
-      <img
-        src="https://static01.nyt.com/images/2018/02/08/smarter-living/carbonfootprint-slide-1Z50/carbonfootprint-slide-1Z50-jumbo.jpg"
-        class="card-img-top"
-        alt="anhasd"
-        height="450px"
-      />
-      <div class="card-body">
-        <h5 class="card-title">Eat locally-produced and organic food</h5>
-        <p class="card-text">
-          It has been estimated that 13% of U.S. greenhouse gas emissions result
-          from the production and transport of food. Transporting food requires
-          petroleum-based fuels, and many fertilizers are also fossil
-          fuel-based.Eating only locally grown food for one year would save the
-          greenhouse gas equivalent of driving 1,000 miles, but eating just one
-          vegetarian meal a week for a year saves 160 miles more than that,
-          according to one study from researchers at Carnegie Mellon.
-        </p>
+          But while most people are eating less red and processed meat compared to a decade ago, they are eating more white meat, according to a study published in Lancet Planetary Health.
+          
+          More than one billion chickens and other poultry were killed for food in the UK in 2018.</p>
+
+          <h2>What impact does meat have on emissions?</h2>
+          <p>The impact of livestock on emissions varies between countries. Globally, the UN estimates it makes up more than 14% of all man-made greenhouse gases, including methane.</p>
+          <center>
+            <div>
+              <img src="{% static 'imgs/educateYourself.jpg' %}" alt="educateYourself">
+            </div>
+          </center>
+          <p class="pt-5">When we talk about emissions, we usually think of carbon dioxide (CO2). But livestock's emissions also include methane, which is up to 34 times more damaging to the environment over 100 years than CO2, according to the UN.
+
+            Beef produces the most greenhouse gas emissions, which include methane. A global average of 110lb (50kg) of greenhouse gases is released per 3.5oz of protein.
+            
+            Lamb has the next highest environmental footprint but these emissions are 50% less than beef.
+            
+            Cattle produce more methane than poultry, which rely more on imported feed than cows, generating a carbon footprint offshore, says Prof Margaret Gill, from University of Aberdeen.</p>
+
+            <h2>How do you measure emissions from meat?</h2>
+            <p>Measuring and comparing the environmental impact of different foods is not simple.
+
+              This is partly because some measurements include emissions from processing, packaging and transportation, rather than just the farming process.
+              
+              The diagram below is based on research published in the Science journal, which estimated emissions per serving of different foods. It shows a wide range of potential environmental impact, even within the same foods, depending on how and where they are produced.</p>
+
+            <center>
+              <div style="height:30%;">
+                <img src="{% static 'imgs/educateYourself2.jpg' %}"  alt="educateYourself2" srcset="">
+              </div>
+            </center>
+
+            <p class="pt-5">According to the UK's Agriculture and Horticulture Development Board, greenhouse gas emissions are lower from UK-produced beef, partly because the "landscape and climate is perfect for growing grass, with grasslands covering 65% of our farmland and 50% of total land". This means cows don't rely as much on grain and other feed, which can have a high carbon footprint.
+
+              Other factors around the world vary the environmental impact. Beef production is the leading cause of deforestation in tropical rainforests such as the Amazon, says food sustainability researcher Valentina Caldart. This adds to the environmental impact of beef from that part of the world.</p>
+            <h2>So, what can you do?</h2>
+            <p>
+              The true climate impact of what we eat is not easy to calculate, says Prof Gill. "Carbon footprints of food vary with how it is produced and where it comes from, and thus changes with the seasons," she says.
+              
+              So, as well as cutting down on red meat and dairy, people who want to make their diets more climate-friendly can follow principles including minimising waste and trying to choose fruit and vegetables that are in season.
+              
+              Prof Gill says there is: "A need for transition - albeit fairly rapid - rather than abrupt change."</p>
       </div>
-    </div>
-    <div class="card mb-5 container p-2 img1">
-      <img
-        src="https://static01.nyt.com/images/2018/02/08/smarter-living/carbonfootprint-slide-664U/carbonfootprint-slide-664U-jumbo.jpg"
-        class="card-img-top"
-        alt="anhasd"
-        height="450px"
-      />
-      <div class="card-body">
-        <h5 class="card-title">
-          Boosting efficiency of livestock production and resource use
-        </h5>
-        <p class="card-text">
-          Technological innovations such as improved feeding, genetics, animal
-          health, general husbandry and information technology are driving up
-          productivity, making resource use more efficient with potential to
-          reduce environmental impact.Emission intensities vary widely within
-          and across livestock systems – particularly for ruminants – showing
-          that better management practices can be adopted more widely to boost
-          production efficiency.
-        </p>
-      </div>
-    </div>
-    <div class="card mb-3 container p-2 img1">
-      <img
-        src="https://static01.nyt.com/images/2019/04/11/smarter-living/carbonfootprint-slide-D3TJ/carbonfootprint-slide-D3TJ-jumbo.jpg"
-        class="card-img-top"
-        alt="anhasd"
-        height="450px"
-      />
-      <div class="card-body">
-        <h5 class="card-title">
-          Intensifying recycling efforts and minimizing losses for a circular
-          bioeconomy
-        </h5>
-        <p class="card-text">
-          Promoting a circular bioeconomy involves recycling resources at every
-          possible step in agrifood systems and closing systems to minimize the
-          loss of resources and nutrients.Manure and slaughterhouse waste can be
-          used to generate fertilizer and biogas as a source of renewable
-          energy.
-        </p>
-      </div>
-    </div>
-    <div class="card mb-3 container p-2 img1">
-      <img
-        src="https://static01.nyt.com/images/2018/02/08/smarter-living/carbonfootprint-slide-25J6/carbonfootprint-slide-25J6-jumbo.jpg"
-        class="card-img-top"
-        alt="anhasd"
-        height="450px"
-      />
-      <div class="card-body">
-        <h5 class="card-title">
-          Striving for healthy, sustainable diets and accounting for protein
-          alternatives
-        </h5>
-        <p class="card-text">
-          The prevalence of malnutrition and overconsumption is unacceptably
-          high with livestock protein consumption tied to wealth.New alternative
-          proteins coming to market could potentially present consumers with
-          climate smart choices with less environmental impact.
-        </p>
-      </div>
-    </div>
+    </section>
+
+    
     <!-- #######################-FOOTER-####################### -->
     <section>
       <footer class="new_footer_area bg_color mt-5 pt-5">
